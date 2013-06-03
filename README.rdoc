@@ -1,6 +1,6 @@
 = ruby-mining
 
-Data mining and machine learning algorithm for Ruby
+Data mining and machine learning algorithms for Ruby
 
 == Contributing to ruby-mining
  

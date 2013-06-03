@@ -14,6 +14,10 @@ module OS
    (/darwin/ =~ RbConfig::CONFIG['host_os']) != nil
   end
 
+  def OS.unix?
+    !OS.windows?
+  end
+  
   def OS.linux?
     OS.unix? and not OS.mac?
   end
@@ -51,7 +55,7 @@ RAKE
     if command?("mvn")==false
       rakefile.write <<-RAKE
   	    task :apt_install do
-          sh "sudo apt-get install maven"
+          sh "sudo apt-get install maven2"
         end
         task :default => [:apt_install]
       RAKE
