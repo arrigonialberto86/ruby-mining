@@ -39,7 +39,7 @@ File.open(File.join(path,"Rakefile"),"w") do |rakefile|
     elsif command?("brew")==false
       rakefile.write <<-RAKE
       task :ok_inst do
-        puts "Maven has been detected on your system"
+        puts "Sorry, Maven could not be installed. Try installing 'brew' first"
       end
       task :default => [:ok_inst]
 RAKE
