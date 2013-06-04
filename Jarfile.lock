@@ -1,4 +1,4 @@
-nz.ac.waikato.cms.weka:weka-stable:jar:3.6.6
+nz.ac.waikato.cms.weka:weka-stable:jar:3.6.9
 net.sf.squirrel-sql.thirdparty-non-maven:java-cup:jar:0.11a
 org.apache.commons:commons-math:jar:2.0
 junit:junit:jar:3.8.1

@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["arrigonialberto86"]
-  s.date = "2013-05-31"
+  s.date = "2013-06-04"
   s.description = "Data mining and machine learning algorithms for JRuby "
   s.email = "arrigonialberto86@gmail.com"
   s.extensions = ["ext/mkrf_conf.rb"]
@@ -18,7 +18,6 @@ Gem::Specification.new do |s|
     "README.rdoc"
   ]
   s.files = [
-    ".document",
     ".jbundler/classpath.rb",
     "Gemfile",
     "Gemfile.lock",
@@ -30,6 +29,7 @@ Gem::Specification.new do |s|
     "VERSION",
     "ext/mkrf_conf.rb",
     "lib/ruby-mining.rb",
+    "pkg/ruby-mining-0.1.0.gem",
     "ruby-mining.gemspec",
     "test/helper.rb",
     "test/test_ruby-mining.rb"

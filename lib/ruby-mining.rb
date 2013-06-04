@@ -3,7 +3,6 @@ require "java"
 java_import "weka.clusterers.SimpleKMeans"
 java_import "org.apache.commons.math.random.RandomDataImpl"
 
-
 module Apache_test
   def Apache_test.print_test 
     randomData = RandomDataImpl.new 
