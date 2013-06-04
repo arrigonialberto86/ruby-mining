@@ -12,5 +12,7 @@ module Apache_test
   end
 end
 
-
+require "ruby_mining/core"
+require "ruby_mining/weka"
+require "ruby_mining/apache"
 
