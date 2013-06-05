@@ -1,4 +1,5 @@
-require "jbundler"
+#require "jbundler"
+require File.join(File.dirname(__FILE__),'..','.jbundler','classpath.rb')
 require "java"
 java_import "weka.clusterers.SimpleKMeans"
 java_import "org.apache.commons.math.random.RandomDataImpl"

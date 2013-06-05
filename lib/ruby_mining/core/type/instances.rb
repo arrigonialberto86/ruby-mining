@@ -1,13 +1,11 @@
 # Extend each class (e.g. Instances) to add custom functionalities
-require 'jbundler'
 require 'java'
-java_import "weka.core.Instances"
 
 module Core
   module Type
-
+    java_import "weka.core.Instances"
     class Instances
-      def mean
+      def mean(att) 
         sum = enumerateInstances.inject(0) do |s,x|
           s+=x.value(attribute(att))
         end

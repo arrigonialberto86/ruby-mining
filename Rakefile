@@ -3,6 +3,7 @@ require 'rubygems'
 require 'bundler'
 begin
   Bundler.setup(:default, :development)
+  require 'jbundler'
 rescue Bundler::BundlerError => e
   $stderr.puts e.message
   $stderr.puts "Run `jruby -S bundle install` to install missing gems"
