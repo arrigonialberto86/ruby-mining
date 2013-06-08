@@ -1,3 +1,9 @@
+mckoi:mckoi:jar:0.93
+hsqldb:hsqldb:jar:1.8.0.7
+idb:idb:jar:3.26
+org.xerial:sqlite-jdbc:jar:3.7.2
+postgresql:postgresql:jar:9.1-901.jdbc4
+mysql:mysql-connector-java:jar:5.1.6
 nz.ac.waikato.cms.weka:weka-stable:jar:3.6.9
 net.sf.squirrel-sql.thirdparty-non-maven:java-cup:jar:0.11a
 org.apache.commons:commons-math:jar:2.0
