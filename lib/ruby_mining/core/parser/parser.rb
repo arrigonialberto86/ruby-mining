@@ -5,7 +5,7 @@ module Core
   	# Parse an ARFF file and create an Instances object
   	def Parser.parse_ARFF(arff_file) 
       java_import 'java.io.FileReader'
-      file_in = FileReader.new file
+      file_in = FileReader.new arff_file
       data_instance = Core::Type::Instances.new file_in
       return data_instance
   	end
