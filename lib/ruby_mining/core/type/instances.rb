@@ -8,6 +8,7 @@ module Core
     java_import 'java.io.File'
     java_import 'weka.core.converters.CSVSaver'
     java_import 'weka.core.converters.ArffSaver'
+    java_import "weka.core.FastVector"
 
     class Instances
       
@@ -33,8 +34,15 @@ module Core
         saver.setFile(out_file);
         saver.writeBatch();
       end
+    end
 
-    end  
-
+    def Type.create_instances(name,attributes)
+      attributes_vector = FastVector.new
+      attributes.each {|value| attributes_vector.addElement(value)}
+      return Instances.new(name,attributes_vector,0)
+    end
   end
 end
+
+
+
