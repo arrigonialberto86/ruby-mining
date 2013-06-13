@@ -1,4 +1,5 @@
 JBUNDLER_CLASSPATH = []
+JBUNDLER_CLASSPATH << '/Users/arrigoni/.m2/repository/org/apache/commons/commons-math3/3.0/commons-math3-3.0.jar'
 JBUNDLER_CLASSPATH << '/Users/arrigoni/.m2/repository/mckoi/mckoi/0.93/mckoi-0.93.jar'
 JBUNDLER_CLASSPATH << '/Users/arrigoni/.m2/repository/hsqldb/hsqldb/1.8.0.7/hsqldb-1.8.0.7.jar'
 JBUNDLER_CLASSPATH << '/Users/arrigoni/.m2/repository/idb/idb/3.26/idb-3.26.jar'

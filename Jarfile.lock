@@ -1,3 +1,4 @@
+org.apache.commons:commons-math3:jar:3.0
 mckoi:mckoi:jar:0.93
 hsqldb:hsqldb:jar:1.8.0.7
 idb:idb:jar:3.26
