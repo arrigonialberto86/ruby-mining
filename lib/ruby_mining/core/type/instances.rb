@@ -13,12 +13,40 @@ module Core
 
     class Instances
 
-      def ReturnAttrData(att)
-        attr_values = []
-            enumerateInstances.each do |i|
-          attr_values << i.value(attribute(att))
+      # Convert an Instances object to a bidimensional Ruby array
+      # where each row corresponds to an Instance object
+      def to_a
+        matrix = Array.new
+        att = Array.new
+        self.enumerateAttributes.each_with_index do |a,idx|
+          if a.isNumeric  
+            enumerate_instances.each {|s| att << s.value(s.attribute(idx))}
+            matrix << att
+            att = Array.new
+          else
+            enumerateInstances.each do |inst|
+              att << inst.string_value(idx)
+            end
+            matrix << att
+            att = Array.new
+          end
         end
-        attr_values
+        return matrix.transpose
+      end
+
+      def return_attr_data(att)
+        attr_values = Array.new
+        if attribute(att).isNumeric
+          enumerateInstances.each do |i|
+            attr_values << i.value(attribute(att))
+          end
+        else
+          attr_index = attribute(att).index
+          enumerateInstances.each do |inst|
+            attr_values << inst.string_value(attr_index)
+          end
+        end
+        return attr_values
       end
       
       def mean(att) 

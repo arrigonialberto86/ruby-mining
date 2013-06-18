@@ -14,7 +14,7 @@ module Weka
 					end
 				end
 			end
-		  loader = DatabaseLoader.new
+		    loader = DatabaseLoader.new
 			loader.setSource(db_url,user,psw)
 			loader.setQuery(query)
 			data = loader.getDataSet
@@ -29,7 +29,7 @@ module Weka
 					end
 				end
 			end
-		  loader = DatabaseLoader.new
+		    loader = DatabaseLoader.new
 			loader.setSource(db_url,user,psw)
 			loader.setQuery(query)
 			data = loader.getDataSet
