@@ -37,7 +37,7 @@ module Core
       def check_numeric_instance
         enumerateAttributes.each do |att|
           unless att.isNumeric
-            raise ArgumentError, 'Attribute #{att.name} is not numeric, but {att.type}'
+            raise ArgumentError, "Sorry, attribute '#{att.name}' is not numeric!"
           end
         end
       end
