@@ -34,6 +34,28 @@ module Core
         return matrix.transpose
       end
 
+      def check_numeric_instance
+        enumerateAttributes.each do |att|
+          unless att.isNumeric
+            raise ArgumentError, 'Attribute #{att.name} is not numeric, but {att.type}'
+          end
+        end
+      end
+
+      def to_A_matrix
+        check_numeric_instance
+        ruby_array = to_a
+        java_double_array = Core::Utils::bidimensional_to_double(ruby_array)
+        return Core::Type::A_matrix.new(java_double_array)
+      end
+
+      def to_A_matrix_block
+        check_numeric_instance
+        ruby_array = to_a
+        java_double_array = Core::Utils::bidimensional_to_double(ruby_array)
+        return Core::Type::A_matrix_block.new(java_double_array)
+      end
+
       def return_attr_data(att)
         attr_values = Array.new
         if attribute(att).isNumeric
@@ -107,7 +129,7 @@ module Core
           date = self.attribute(position).ParseDate(attribute_value)
           return date
         else
-          puts 'Attribute type is unknown!'
+          puts 'ERROR: Attribute type is unknown!'
         end
       end
     end #Instances class
