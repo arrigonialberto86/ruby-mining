@@ -11,11 +11,15 @@ module Core
     java_import "weka.core.FastVector"
     java_import "weka.core.Instance"
 
+    #
+    # * *Description*    :
+    # This is the main class from the Weka package for data handling. It is essentially a matrix: each row
+    # is an instance of the Instance class, while each column is an instance of the Attribute class 
     class Instances
 
       # Convert an Instances object to a bidimensional Ruby array
       # where each row corresponds to an Instance object
-      def to_a
+      def to_a2d
         matrix = Array.new
         att = Array.new
         self.enumerateAttributes.each_with_index do |a,idx|
@@ -34,6 +38,7 @@ module Core
         return matrix.transpose
       end
 
+      # Check if this instance's attributes are all Numeric
       def check_numeric_instance
         enumerateAttributes.each do |att|
           unless att.isNumeric
@@ -42,20 +47,27 @@ module Core
         end
       end
 
-      def to_A_matrix
+      # Convert the present Instances object to an Apache matrix if every Instances attribute
+      # is Numeric 
+      def to_Apache_matrix
         check_numeric_instance
         ruby_array = to_a
         java_double_array = Core::Utils::bidimensional_to_double(ruby_array)
-        return Core::Type::A_matrix.new(java_double_array)
+        return Core::Type::Apache_matrix.new(java_double_array)
       end
 
-      def to_A_matrix_block
+      # Convert the present Instances object to an Apache matrix (block) if every Instances attribute
+      # is Numeric 
+      def to_Apache_matrix_block
         check_numeric_instance
         ruby_array = to_a
         java_double_array = Core::Utils::bidimensional_to_double(ruby_array)
-        return Core::Type::A_matrix_block.new(java_double_array)
+        return Core::Type::Apache_matrix_block.new(java_double_array)
       end
 
+      # Return data for a single attribute (a column from the Instances object)
+      # * *Args*    :
+      #   - +att+ -> a String, the name of the attribute
       def return_attr_data(att)
         attr_values = Array.new
         if attribute(att).isNumeric
@@ -70,7 +82,10 @@ module Core
         end
         return attr_values
       end
-      
+
+      # Return the mean value of a single attribute (a column from the Instances object)
+      # * *Args*    :
+      #   - +att+ -> a String, the name of the attribute      
       def mean(att) 
         sum = enumerateInstances.inject(0) do |s,x|
           s+=x.value(attribute(att))
@@ -78,6 +93,9 @@ module Core
         return sum/(numInstances*1.0)
       end
 
+      # Write the content of the current Instances object to a .csv file
+      # * *Args*    :
+      #   - +out_file+ -> a String, the name of the output file  
       def to_CSV(out_file)
         saver = CSVSaver.new
         saver.setInstances(self)
@@ -86,6 +104,9 @@ module Core
         saver.writeBatch();
       end
 
+      # Write the content of the current Instances object to a .arff file
+      # * *Args*    :
+      #   - +out_file+ -> a String, the name of the output file 
       def to_ARFF(out_file)
         saver = ArffSaver.new
         saver.setInstances(self)
@@ -94,12 +115,16 @@ module Core
         saver.writeBatch();
       end
 
-      # should check that the array is bidimensional and the lengths are equal
+      # (check function): should check that the array is bidimensional and that
+      # the lengths are equal
       def check_array(data)
         return true
       end
 
-      # data is inserted 'by row', i.e. one Instance object is inserted at the time
+      # An entire dataset is inserted 'by row' into the current Instances object 
+      # i.e. one Instance object is inserted at the time
+      # * *Args*    :
+      #   - +data+ -> a bidimensional array 
       def populate_by_row(data)
         unless check_array(data) == false
           data.each do |row|
@@ -108,6 +133,9 @@ module Core
         end
       end
 
+      # An Instance instance object is inserted into the current Instances object 
+      # * *Args*    :
+      #   - +instance+ -> an Instance object
       def insert_instance(instance)
         data_ref=Array.new
         instance.each_with_index do |attribute,idx|
@@ -118,22 +146,35 @@ module Core
         self.add(single_row)
       end
 
-      def insert_attribute(attribute_value,position)
-        att=attribute_value
-        if self.attribute(position).isNumeric
-          return attribute_value
-        elsif self.attribute(position).isNominal
-          idx = self.attribute(position).indexOfValue(attribute_value)
-          return idx
-        elsif self.attribute(position).isDate
-          date = self.attribute(position).ParseDate(attribute_value)
-          return date
-        else
-          puts 'ERROR: Attribute type is unknown!'
-        end
+      # An Attribute instance object is inserted into the current Instances object  
+      # * *Args*    :
+      #   - +attribute_name+ -> A name for the new attribute
+      # * *WARNING*    :
+      # This method only creates an empty attribute field
+      def insert_numeric_attribute(attribute_name)
+        insertAttributeAt(Attribute.new(attribute_name), self.numAttributes)
       end
+
+      # An Attribute instance object is inserted into the current Instances object  
+      # * *Args*    :
+      #   - +attribute_name+ -> A name for the new attribute
+      #   - +values+ -> RubyArray with nominal values 
+      # * *WARNING*    :
+      # This method only creates an empty attribute field
+      def insert_nominal_attribute(attribute,list_values)
+        values = FastVector.new
+        list_values.each do |val|
+          values.addElement(val)         
+        end
+        insertAttributeAt(Attribute.new(attribute, values), self.numAttributes)
+      end      
+
     end #Instances class
 
+    # Create an Instances object
+    # * *Args*    :
+    #   - +name+ -> A name for the Instances object
+    #   - +attributes+ -> An array containing Attribute objects
     def Type.create_instances(name,attributes)
       attributes_vector = FastVector.new
       attributes.each {|value| attributes_vector.addElement(value)}

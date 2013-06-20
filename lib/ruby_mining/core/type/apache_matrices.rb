@@ -6,16 +6,16 @@ module Core
   	java_import 'org.apache.commons.math3.linear.BlockRealMatrix'
   	java_import 'org.apache.commons.math3.linear.Array2DRowRealMatrix'
 
-  	A_matrix = Array2DRowRealMatrix
-  	A_matrix_block = BlockRealMatrix
+  	Apache_matrix = Array2DRowRealMatrix
+  	Apache_matrix_block = BlockRealMatrix
 
   	# NB: 'A' stands for Apache
-		class A_matrix 
+		class Apache_matrix 
 
 		end
 
 		# More suited to dimensions above 50 or 100
-		class A_matrix_block
+		class Apache_matrix_block
 
 		end
 
