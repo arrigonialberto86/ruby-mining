@@ -38,6 +38,21 @@ module Core
         return matrix.transpose
       end
 
+      # Return the number of rows (Instance objects) in the dataset
+      def n_rows
+        return numInstances
+      end
+
+      # Return the number of columns (Attribute objects) in the dataset
+      def n_columns
+        return numAttributes
+      end
+
+      # Return the dimensions of the dataset (for the current Instances class object)
+      def dim
+        puts "Rows number:\t#{numInstances}\nColumns number:\t #{numAttributes}"
+      end
+
       # Check if this instance's attributes are all Numeric
       def check_numeric_instance
         enumerateAttributes.each do |att|
@@ -96,7 +111,7 @@ module Core
       # Return the variance of a single attribute (a column from the Instances object)
       # * *Args*    :
       #   - +attribute_name+ -> a String, the name of the attribute    
-      def mean(attribute_name) 
+      def variance(attribute_name) 
         enumerateAttributes.each_with_idx do |att,idx|
           return variance(idx) if att.name==attribute_name
         end
@@ -145,7 +160,7 @@ module Core
       # An Instance instance object is inserted into the current Instances object 
       # * *Args*    :
       #   - +instance+ -> an Instance object
-      def insert_instance(instance)
+      def add_instance(instance)
         data_ref=Array.new
         instance.each_with_index do |attribute,idx|
           data_ref << insert_attribute(attribute,idx)
@@ -160,7 +175,7 @@ module Core
       #   - +attribute_name+ -> A name for the new attribute
       # * *WARNING*    :
       # This method only creates an empty attribute field
-      def insert_numeric_attribute(attribute_name)
+      def add_numeric_attribute(attribute_name)
         insertAttributeAt(Attribute.new(attribute_name), self.numAttributes)
       end
 
@@ -170,7 +185,7 @@ module Core
       #   - +values+ -> RubyArray with nominal values 
       # * *WARNING*    :
       # This method only creates an empty attribute field
-      def insert_nominal_attribute(attribute,list_values)
+      def add_nominal_attribute(attribute,list_values)
         values = FastVector.new
         list_values.each do |val|
           values.addElement(val)         
