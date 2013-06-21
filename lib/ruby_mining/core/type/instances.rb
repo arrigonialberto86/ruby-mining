@@ -1,4 +1,3 @@
-# Extend each class (e.g. Instances) to add custom functionalities
 require 'java'
 
 module Core
@@ -14,7 +13,8 @@ module Core
     #
     # * *Description*    :
     # This is the main class from the Weka package for data handling. It is essentially a matrix: each row
-    # is an instance of the Instance class, while each column is an instance of the Attribute class 
+    # is an instance of the 'Instance' class, while each column is an instance of the 'Attribute' class
+    # The class 'Instances' is here extended to add custom functionalities 
     class Instances
 
       # Convert an Instances object to a bidimensional Ruby array
@@ -85,13 +85,22 @@ module Core
 
       # Return the mean value of a single attribute (a column from the Instances object)
       # * *Args*    :
-      #   - +att+ -> a String, the name of the attribute      
-      def mean(att) 
+      #   - +attribute_name+ -> a String, the name of the attribute      
+      def mean(attribute_name) 
         sum = enumerateInstances.inject(0) do |s,x|
-          s+=x.value(attribute(att))
+          s+=x.value(attribute(attribute_name))
         end
         return sum/(numInstances*1.0)
       end
+
+      # Return the variance of a single attribute (a column from the Instances object)
+      # * *Args*    :
+      #   - +attribute_name+ -> a String, the name of the attribute    
+      def mean(attribute_name) 
+        enumerateAttributes.each_with_idx do |att,idx|
+          return variance(idx) if att.name==attribute_name
+        end
+      end      
 
       # Write the content of the current Instances object to a .csv file
       # * *Args*    :
@@ -168,6 +177,35 @@ module Core
         end
         insertAttributeAt(Attribute.new(attribute, values), self.numAttributes)
       end      
+
+      #Print to STDOUT the list of the Instances's attributes (with the corresponding types)
+      def summary
+        enumerateAttributes.each_with_index do |att,idx| 
+          STDOUT.write "Attribute #{idx}\t"
+        end
+        STDOUT.write "\n"        
+        enumerateAttributes.each do |att| 
+          STDOUT.write "#{att.name}\t"
+        end
+        STDOUT.write "\n"
+        enumerateAttributes.each do |att|
+          STDOUT.write "Numeric\t" if att.isNumeric 
+          STDOUT.write "Nominal\t" if att.isNominal
+          STDOUT.write "Date\t" if att.isDate
+        end
+        count=0
+        enumerateInstances.each {|inst| count=count+1}
+        puts "\nNumber of rows: #{count}" 
+      end
+
+      # Merges two sets of Instances together. The resulting set will have all the
+      # attributes of the first set plus all the attributes of the second set. The
+      # number of instances in both sets must be the same.
+      # * *Args*    :
+      #   - +instances+ -> An Instances class object
+      def merge_with(instances)
+        return Instances.mergeInstances(self,instances)
+      end
 
     end #Instances class
 
