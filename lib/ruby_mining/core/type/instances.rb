@@ -139,6 +139,22 @@ module Core
         saver.writeBatch();
       end
 
+      def insert_attribute(attribute_value,position)
+        att=attribute_value
+        if self.attribute(position).isNumeric
+          return attribute_value
+        elsif self.attribute(position).isNominal
+          idx = self.attribute(position).indexOfValue(attribute_value)
+          return idx
+        elsif self.attribute(position).isDate
+          date = self.attribute(position).ParseDate(attribute_value)
+          return date
+        else
+          puts 'Attribute type is unknown!'
+        end
+      end
+      private :insert_attribute
+
       # (check function): should check that the array is bidimensional and that
       # the lengths are equal
       def check_array(data)
@@ -152,14 +168,14 @@ module Core
       def populate_by_row(data)
         unless check_array(data) == false
           data.each do |row|
-            insert_instance(row)
+            add_instance(row)
           end
         end
       end
 
-      # An Instance instance object is inserted into the current Instances object 
+      # An Instance instance object (one row) is inserted into the current Instances object 
       # * *Args*    :
-      #   - +instance+ -> an Instance object
+      #   - +instance+ -> an array of values of the correct data type (:nominal,:numeric,etc...)
       def add_instance(instance)
         data_ref=Array.new
         instance.each_with_index do |attribute,idx|
@@ -220,6 +236,52 @@ module Core
       #   - +instances+ -> An Instances class object
       def merge_with(instances)
         return Instances.mergeInstances(self,instances)
+      end
+
+      # This method creates an Instances object (see Cucumber documentation for further details)
+      def self.create
+        instances = Core::Type.create_instances(name,@@positions)
+        return instances
+      end
+
+      @@positions = []
+      # This method is used for attributes definition in uninitialized Instances-derived classes
+      def self.att(attr_type,name,*values)
+        att = Core::Type.create_numeric_attr(name.to_java(:string)) if attr_type == :numeric
+        att = Core::Type.create_nominal_attr(name.to_java(:string),values[0]) if attr_type == :nominal
+        att = Core::Type.create_date_attr(name.to_java(:string),values[0]) if attr_type == :date
+        att = att = Core::Type.create_numeric_attr(name.to_java(:String)) if attr_type == :string      
+        @@positions << att
+      end
+
+      # This method is used for Nominal attributes definition in uninitialized Instances-derived classes
+      # * *Args*    :
+      #   - +name+ -> Attribute name, a String
+      #   - +values+ -> An array of values for the nominal attribute
+      def self.nominal(name,values)
+        puts values.inspect
+        att :nominal, name, values
+      end
+
+      # This method is used for Numeric attributes definition in uninitialized Instances-derived classes
+      # * *Args*    :
+      #   - +name+ -> Attribute name, a String
+      def self.numeric(name)
+        att :numeric, name
+      end
+
+      # This method is used for Date attributes definition in uninitialized Instances-derived classes
+      # * *Args*    :
+      #   - +name+ -> Attribute name, a String
+      def self.date(name)
+        att :date, name
+      end
+
+      # This method is used for String attributes definition in uninitialized Instances-derived classes
+      # * *Args*    :
+      #   - +name+ -> Attribute name, a String
+      def self.string(name)
+        att :string, name
       end
 
     end #Instances class

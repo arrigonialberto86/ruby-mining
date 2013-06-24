@@ -6,6 +6,12 @@ module Weka
 		java_import 'weka.core.converters.DatabaseLoader'
 		java_import 'weka.core.converters.DatabaseSaver'
 
+		# Query data from a MySQL database
+		# * *Args*    :
+      	#   - +db_url+ -> The database URL
+      	#   - +user+ -> User name
+      	#   - +psw+ -> Password
+      	#   - +quey+ -> A query to submit
 		def Db.query_mysql(db_url,user,psw,query)
 			open([[Dir.home],["DatabaseUtils.props"]].join("/"),'w') do |out|
 				open(File.join(File.dirname(File.expand_path(__FILE__)), 'DatabaseUtils_mysql'),'r') do |f|
@@ -21,6 +27,12 @@ module Weka
 			return data
 		end
 
+		# Query data from a PostgreSQL database
+		# * *Args*    :
+      	#   - +db_url+ -> The database URL
+      	#   - +user+ -> User name
+      	#   - +psw+ -> Password
+      	#   - +quey+ -> A query to submit
 		def Db.query_postgresql(db_url,user,psw,query)
 			open([[Dir.home],["DatabaseUtils.props"]].join("/"),'w') do |out|
 				open(File.join(File.dirname(File.expand_path(__FILE__)), 'DatabaseUtils_postgresql'),'r') do |f|
@@ -36,7 +48,13 @@ module Weka
 			return data
 		end
 
-		# This saves an Instances class object to a Mysql database
+		# Save an Instances class object to a Mysql database
+		# * *Args*    :
+      	#   - +db_url+ -> The database URL
+      	#   - +user+ -> User name
+      	#   - +psw+ -> Password
+      	#   - +data+ -> An Instances class object 
+      	#   - +table+ -> The destination table in the database     	
 		def Db.save_to_mysql(db_url,user,psw,data,table)
 			open([[Dir.home],["DatabaseUtils.props"]].join("/"),'w') do |out|
 				open(File.join(File.dirname(File.expand_path(__FILE__)), 'DatabaseUtils_mysql'),'r') do |f|
