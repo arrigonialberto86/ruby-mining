@@ -1,1 +1,5 @@
 require 'ruby_mining/weka/db/db'
+require 'ruby_mining/weka/filters/unsupervised/attribute/attribute.rb'
+require 'ruby_mining/weka/filters/unsupervised/instance/instance.rb'
+require 'ruby_mining/weka/filters/supervised/instance/instance.rb'
+require 'ruby_mining/weka/filters/supervised/attribute/attribute.rb'
