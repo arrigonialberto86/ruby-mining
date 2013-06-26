@@ -6,7 +6,7 @@ module Weka
   		module Attribute
   			java_import "weka.core.Utils"
   			java_import "weka.filters.Filter"
-   			java_import "weka.filters.supervised.attribute.AddClassification"
+   			java_import "weka.filters.supervised.attribute.AttributeSelection"
 
    			class AttributeSelection
   				def list_options
@@ -21,7 +21,7 @@ module Weka
   					@input = instances
   				end
   				def description
-  					begin globalInfo; rescue NoMethodError; puts "Sorry, no description available for this filter"; end
+  					begin; puts globalInfo; rescue; NoMethodError; puts "Sorry, no description available for this filter"; end
   				end
   				def use
   					Filter.useFilter(@input,self)

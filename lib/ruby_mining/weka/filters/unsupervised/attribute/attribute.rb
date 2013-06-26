@@ -29,7 +29,7 @@ module Weka
   					@input = instances
   				end
   				def description
-  					begin globalInfo; rescue NoMethodError; puts "Sorry, no description available for this filter"; end
+            begin; puts globalInfo; rescue; NoMethodError; puts "Sorry, no description available for this filter"; end
   				end
   				def use
   					Filter.useFilter(@input,self)
@@ -49,7 +49,7 @@ module Weka
   					@input = instances
   				end
   				def description
-  					begin globalInfo; rescue NoMethodError; puts "Sorry, no description available for this filter"; end
+            begin; puts globalInfo; rescue; NoMethodError; puts "Sorry, no description available for this filter"; end
   				end
   				def use
   					Filter.useFilter(@input,self)
@@ -69,7 +69,7 @@ module Weka
   					@input = instances
   				end
   				def description
-  					begin globalInfo; rescue NoMethodError; puts "Sorry, no description available for this filter"; end
+            begin; puts globalInfo; rescue; NoMethodError; puts "Sorry, no description available for this filter"; end
   				end
   				def use
   					Filter.useFilter(@input,self)
@@ -89,7 +89,7 @@ module Weka
   					@input = instances
   				end
   				def description
-  					begin globalInfo; rescue NoMethodError; puts "Sorry, no description available for this filter"; end
+            begin; puts globalInfo; rescue; NoMethodError; puts "Sorry, no description available for this filter"; end
   				end
   				def use
   					Filter.useFilter(@input,self)
@@ -109,7 +109,7 @@ module Weka
   					@input = instances
   				end
   				def description
-  					begin globalInfo; rescue NoMethodError; puts "Sorry, no description available for this filter"; end
+            begin; puts globalInfo; rescue; NoMethodError; puts "Sorry, no description available for this filter"; end
   				end
   				def use
   					Filter.useFilter(@input,self)
@@ -129,7 +129,7 @@ module Weka
   					@input = instances
   				end
   				def description
-  					begin globalInfo; rescue NoMethodError; puts "Sorry, no description available for this filter"; end
+            begin; puts globalInfo; rescue; NoMethodError; puts "Sorry, no description available for this filter"; end
   				end
   				def use
   					Filter.useFilter(@input,self)
@@ -149,7 +149,7 @@ module Weka
   					@input = instances
   				end
   				def description
-  					begin globalInfo; rescue NoMethodError; puts "Sorry, no description available for this filter"; end
+            begin; puts globalInfo; rescue; NoMethodError; puts "Sorry, no description available for this filter"; end
   				end
   				def use
   					Filter.useFilter(@input,self)
@@ -169,7 +169,7 @@ module Weka
   					@input = instances
   				end
   				def description
-  					begin globalInfo; rescue NoMethodError; puts "Sorry, no description available for this filter"; end
+            begin; puts globalInfo; rescue; NoMethodError; puts "Sorry, no description available for this filter"; end
   				end
   				def use
   					Filter.useFilter(@input,self)
