@@ -176,6 +176,15 @@ module Weka
   				end
   			end
 
+        Weka::Filter::Unsupervised::Attribute::PrincipalComponents.__persistent__ = true
+        Weka::Filter::Unsupervised::Attribute::Add.__persistent__ = true
+        Weka::Filter::Unsupervised::Attribute::Standardize.__persistent__ = true
+        Weka::Filter::Unsupervised::Attribute::Remove.__persistent__ = true
+        Weka::Filter::Unsupervised::Attribute::Normalize.__persistent__ = true
+        Weka::Filter::Unsupervised::Attribute::Discretize.__persistent__ = true
+        Weka::Filter::Unsupervised::Attribute::Center.__persistent__ = true
+        Weka::Filter::Unsupervised::Attribute::NominalToString.__persistent__ = true
+
   		end
   	end
   end
