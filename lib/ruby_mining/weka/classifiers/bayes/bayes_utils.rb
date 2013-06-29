@@ -14,6 +14,10 @@ module Bayes_utils
 		listOptions.each {|key| puts "#{key.synopsis} #{key.description}"}
 	end
 
+	def description
+    puts globalInfo
+	end
+
 	module ClassMethods
 
 		def set_options(options_string)
