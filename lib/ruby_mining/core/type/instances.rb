@@ -240,6 +240,7 @@ module Core
 
       # This method creates an Instances object (see Cucumber documentation for further details)
       def self.create
+        name = 'Instances'
         instances = Core::Type.create_instances(name,@@positions)
         return instances
       end
@@ -259,7 +260,6 @@ module Core
       #   - +name+ -> Attribute name, a String
       #   - +values+ -> An array of values for the nominal attribute
       def self.nominal(name,values)
-        puts values.inspect
         att :nominal, name, values
       end
 
