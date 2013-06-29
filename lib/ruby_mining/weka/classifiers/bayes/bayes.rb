@@ -6,7 +6,7 @@ module Classifier_utils
       base.extend(ClassMethods)
   end
 
-  def set_instance_options(options)
+  def set_options(options)
   	options_inst = Utils.splitOptions(options)
 		setOptions(options_inst)
 		puts 'Options are set!'
@@ -37,9 +37,12 @@ module Weka
 
 			class NaiveBayes
 				include Classifier_utils
-				def initialize
-					super
-					set_instance_options(self.class.options)
+				class Base < NaiveBayes
+					include Classifier_utils
+					def initialize
+						super
+						set_options(self.class.options)
+					end
 				end
 			end
 		end
