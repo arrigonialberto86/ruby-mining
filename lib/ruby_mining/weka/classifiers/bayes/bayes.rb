@@ -12,6 +12,9 @@ module Weka
 					def initialize
 						super
 						set_options(self.class.options)
+						self.class.data.setClassIndex(self.class.class_index)
+						puts self.class.class_index
+						buildClassifier(self.class.data)
 					end
 				end
 			end

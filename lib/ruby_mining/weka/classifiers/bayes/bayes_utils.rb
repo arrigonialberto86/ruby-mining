@@ -8,7 +8,6 @@ module Bayes_utils
   def set_options(options)
   	options_inst = Utils.splitOptions(options)
 		setOptions(options_inst)
-#		puts 'Options are set!'
   end
 
 	def list_options
@@ -16,7 +15,6 @@ module Bayes_utils
 	end
 
 	module ClassMethods
-		@options_string = ''
 
 		def set_options(options_string)
 			@options_string = options_string
@@ -25,5 +23,24 @@ module Bayes_utils
 		def options
       @options_string
     end
+
+	  def set_data(data_instance)
+			@data = data_instance	  	
+	  end
+
+	  def data
+	  	@data
+	  end  
+
+	  def set_class_index(class_index)
+	  	@class_index = class_index
+	  end
+
+	  def class_index
+	  	@class_index
+	  end
 	end
 end
+
+
+
