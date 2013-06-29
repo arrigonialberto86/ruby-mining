@@ -239,11 +239,11 @@ module Core
       end
 
       # This method creates an Instances object (see Cucumber documentation for further details)
-      def self.create
-        name = 'Instances'
-        instances = Core::Type.create_instances(name,@@positions)
-        return instances
-      end
+     # def self.create
+     #   name = 'Instances'
+     #   instances = Core::Type.create_instances(name,@@positions)
+     #   return instances
+     # end
 
       @@positions = []
       # This method is used for attributes definition in uninitialized Instances-derived classes
@@ -284,6 +284,14 @@ module Core
         att :string, name
       end
 
+      # Class used for the creation of a new dataset (Instances class)
+      class Base < Instances
+        def initialize
+          attributes_vector = FastVector.new
+          @@positions.each {|value| attributes_vector.addElement(value)}
+          super('Instances',attributes_vector,0)
+        end
+      end
     end #Instances class
 
     # Create an Instances object
