@@ -1,4 +1,5 @@
 require 'java'
+require 'ruport'
 
 module Core
   module Type
@@ -211,19 +212,28 @@ module Core
 
       #Print to STDOUT the list of the Instances's attributes (with the corresponding types)
       def summary
+        summary = Ruport::Data::Table::new
+        summary.add_column 'Attributes'
         enumerateAttributes.each_with_index do |att,idx| 
-          STDOUT.write "Attribute #{idx}\t"
+          summary.add_column idx+1
         end
-        STDOUT.write "\n"        
+ 
+        att_names = ['Names']
         enumerateAttributes.each do |att| 
-          STDOUT.write "#{att.name}\t"
+          att_names << "'#{att.name}'"
         end
-        STDOUT.write "\n"
+        summary << att_names
+
+        att_types = ['Types']
         enumerateAttributes.each do |att|
-          STDOUT.write "Numeric\t" if att.isNumeric 
-          STDOUT.write "Nominal\t" if att.isNominal
-          STDOUT.write "Date\t" if att.isDate
+          att_types << "Numeric" if att.isNumeric 
+          att_types << "Nominal" if att.isNominal
+          att_types << "Date" if att.isDate
         end
+        summary << att_types
+
+        puts summary
+
         count=0
         enumerateInstances.each {|inst| count=count+1}
         puts "\nNumber of rows: #{count}" 
