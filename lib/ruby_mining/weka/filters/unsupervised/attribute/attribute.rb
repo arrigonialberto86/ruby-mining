@@ -13,6 +13,7 @@ module Weka
   			java_import "weka.filters.unsupervised.attribute.Remove"
   			java_import "weka.filters.unsupervised.attribute.Standardize"
   			java_import "weka.filters.unsupervised.attribute.PrincipalComponents"
+        java_import "weka.filters.unsupervised.attribute.StringToWordVector"
   			java_import "weka.core.Utils"
   			java_import "weka.filters.Filter"
 
@@ -176,6 +177,30 @@ module Weka
   				end
   			end
 
+        class StringToWordVector
+          def list_options
+            listOptions.each {|key| puts "#{key.synopsis} #{key.description}"}
+          end
+          def set_options(options_string)
+            options = Utils.splitOptions(options_string)
+            setOptions(options)
+          end
+          def set_data(instances)
+            setInputFormat(instances)
+            @input = instances
+          end
+          def description
+            begin; puts globalInfo; rescue; NoMethodError; puts "Sorry, no description available for this filter"; end
+          end
+          def use(arg=nil)
+            if arg==nil
+              Filter.useFilter(@input,self)
+            else
+              Filter.useFilter(arg,self) 
+            end
+          end
+        end
+
         Weka::Filter::Unsupervised::Attribute::PrincipalComponents.__persistent__ = true
         Weka::Filter::Unsupervised::Attribute::Add.__persistent__ = true
         Weka::Filter::Unsupervised::Attribute::Standardize.__persistent__ = true
@@ -184,7 +209,7 @@ module Weka
         Weka::Filter::Unsupervised::Attribute::Discretize.__persistent__ = true
         Weka::Filter::Unsupervised::Attribute::Center.__persistent__ = true
         Weka::Filter::Unsupervised::Attribute::NominalToString.__persistent__ = true
-
+        Weka::Filter::Unsupervised::Attribute::StringToWordVector.__persistent__ = true
   		end
   	end
   end

@@ -11,8 +11,8 @@ module Weka
 				class Base < NaiveBayes
 					def initialize
 						super
-						set_options(self.class.options)
-						self.class.data.setClassIndex(self.class.class_index)
+						set_options(self.class.options) if self.class.options 
+						self.class.data.setClassIndex(self.class.class_index) if self.class.class_index
 						buildClassifier(self.class.data)
 					end
 				end

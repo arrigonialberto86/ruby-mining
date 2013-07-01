@@ -1,0 +1,8 @@
+module Weka
+	module Classifier
+		java_import 'weka.classifiers.Evaluation'
+		class Evaluation
+
+		end
+	end
+end
