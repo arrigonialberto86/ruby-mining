@@ -261,7 +261,7 @@ module Core
         att = Core::Type.create_numeric_attr(name.to_java(:string)) if attr_type == :numeric
         att = Core::Type.create_nominal_attr(name.to_java(:string),values[0]) if attr_type == :nominal
         att = Core::Type.create_date_attr(name.to_java(:string),values[0]) if attr_type == :date
-        att = att = Core::Type.create_numeric_attr(name.to_java(:String)) if attr_type == :string      
+        att = att = Core::Type.create_string_attr(name.to_java(:string)) if attr_type == :string      
         @@positions << att
       end
 

@@ -42,7 +42,8 @@ module Core
     # * *Args*    :
     #   - +name_of_attr+ -> a String, the name of the attribute 
     def self.create_string_attr(name_of_attr)
-    	string = Attribute.new(name_of_attr,nil)
+    #    string = Attribute.java_send :initialize, name_of_attr, [Java::String], nil, [Java::weka.core.FastVector]
+    	string = Attribute.new(name_of_attr,nil.to_java(Java::weka.core.FastVector))
     	return string
     end
   end
