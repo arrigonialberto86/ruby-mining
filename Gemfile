@@ -13,4 +13,5 @@ group :development do
   gem "simplecov", ">= 0"
   gem "jbundler"
   gem "ruport"
+  gem "cucumber"
 end
