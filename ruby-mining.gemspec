@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["arrigonialberto86"]
-  s.date = "2013-06-04"
+  s.date = "2013-07-03"
   s.description = "Data mining and machine learning algorithms for JRuby "
   s.email = "arrigonialberto86@gmail.com"
   s.extensions = ["ext/mkrf_conf.rb"]
@@ -28,13 +28,33 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "ext/mkrf_conf.rb",
+    "features/create_dataset.feature",
+    "features/step_definitions/create_dataset.rb",
+    "features/step_definitions/weka_parsers.rb",
+    "features/support/env.rb",
+    "features/weka_parsers.feature",
     "lib/ruby_mining.rb",
     "lib/ruby_mining/apache.rb",
     "lib/ruby_mining/core.rb",
     "lib/ruby_mining/core/parser/parser.rb",
+    "lib/ruby_mining/core/type/apache_matrices.rb",
+    "lib/ruby_mining/core/type/attribute.rb",
+    "lib/ruby_mining/core/type/instance.rb",
     "lib/ruby_mining/core/type/instances.rb",
+    "lib/ruby_mining/core/type/utils.rb",
     "lib/ruby_mining/weka.rb",
-    "pkg/ruby-mining-0.1.0.gem",
+    "lib/ruby_mining/weka/classifiers/bayes/bayes.rb",
+    "lib/ruby_mining/weka/classifiers/bayes/bayes_utils.rb",
+    "lib/ruby_mining/weka/classifiers/evaluation.rb",
+    "lib/ruby_mining/weka/db/DatabaseUtils_mysql",
+    "lib/ruby_mining/weka/db/DatabaseUtils_postgresql",
+    "lib/ruby_mining/weka/db/db.rb",
+    "lib/ruby_mining/weka/filters/supervised/attribute/attribute.rb",
+    "lib/ruby_mining/weka/filters/supervised/instance/instance.rb",
+    "lib/ruby_mining/weka/filters/unsupervised/attribute/attribute.rb",
+    "lib/ruby_mining/weka/filters/unsupervised/instance/instance.rb",
+    "resources/weather.csv",
+    "resources/weather.numeric.arff",
     "ruby-mining.gemspec",
     "test/helper.rb",
     "test/test_ruby-mining.rb"
@@ -55,6 +75,9 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<jeweler>, ["~> 1.8.4"])
       s.add_development_dependency(%q<simplecov>, [">= 0"])
       s.add_development_dependency(%q<jbundler>, [">= 0"])
+      s.add_development_dependency(%q<ruport>, [">= 0"])
+      s.add_development_dependency(%q<cucumber>, [">= 0"])
+      s.add_development_dependency(%q<rspec>, [">= 0"])
     else
       s.add_dependency(%q<shoulda>, [">= 0"])
       s.add_dependency(%q<rdoc>, ["~> 3.12"])
@@ -62,6 +85,9 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<jeweler>, ["~> 1.8.4"])
       s.add_dependency(%q<simplecov>, [">= 0"])
       s.add_dependency(%q<jbundler>, [">= 0"])
+      s.add_dependency(%q<ruport>, [">= 0"])
+      s.add_dependency(%q<cucumber>, [">= 0"])
+      s.add_dependency(%q<rspec>, [">= 0"])
     end
   else
     s.add_dependency(%q<shoulda>, [">= 0"])
@@ -70,6 +96,9 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<jeweler>, ["~> 1.8.4"])
     s.add_dependency(%q<simplecov>, [">= 0"])
     s.add_dependency(%q<jbundler>, [">= 0"])
+    s.add_dependency(%q<ruport>, [">= 0"])
+    s.add_dependency(%q<cucumber>, [">= 0"])
+    s.add_dependency(%q<rspec>, [">= 0"])
   end
 end
 

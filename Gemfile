@@ -14,4 +14,5 @@ group :development do
   gem "jbundler"
   gem "ruport"
   gem "cucumber"
+  gem "rspec"
 end

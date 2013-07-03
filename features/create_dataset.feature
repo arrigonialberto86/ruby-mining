@@ -2,7 +2,7 @@ Feature: Creation of an in-memory dataset
 	In order to perform calculations on a dataset
 	I want to easily create it in memory
 
-	Scenario: creation of an empty dataset
+	Scenario: creation of a dataset
 	Given a nominal attribute, named "assertion", with values "yes,no" 
 	Given one numeric attribute, named "temperature"
 	Given another numeric attribute, names "days"

@@ -15,4 +15,4 @@ Feature: Weka basic parsing capabilities
 		And a table named "test_weka"	
 		Then I want to extract data from that table
 		And I want to print to stdout the summary for the parsed Instances object
-		And I want to convert and print the data into a bidimensional Ruby Array
+		And I want to convert the data into a bidimensional Ruby Array
