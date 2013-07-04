@@ -229,6 +229,7 @@ module Core
           att_types << "Numeric" if att.isNumeric 
           att_types << "Nominal" if att.isNominal
           att_types << "Date" if att.isDate
+          att_types << "String" if att.isString
         end
         summary << att_types
 

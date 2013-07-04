@@ -25,7 +25,7 @@ module Bayes_utils
 		end
 
 		def options
-      @options_string
+    	@options_string
     end
 
 	  def set_data(data_instance)
