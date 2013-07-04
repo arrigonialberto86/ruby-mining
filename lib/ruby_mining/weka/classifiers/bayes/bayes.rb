@@ -48,7 +48,7 @@ module Weka
 
 			class ComplementNaiveBayes
 				include Bayes_utils
-				class Base < BayesianLogisticRegression
+				class Base < ComplementNaiveBayes
 					def initialize
 						super
 						set_options(self.class.options) if self.class.options 
@@ -60,7 +60,7 @@ module Weka
 
 			class WAODE
 				include Bayes_utils
-				class Base < BayesianLogisticRegression
+				class Base < WAODE
 					def initialize
 						super
 						set_options(self.class.options) if self.class.options 
