@@ -1,5 +1,5 @@
 #This module is used by the Bayesian classifiers from 'bayes.rb' 
-#to share the following methods (instance and class methods)
+#to inherit the following methods (instance and class methods)
 module Bayes_utils
 	java_import "weka.core.Utils"
 
@@ -24,7 +24,7 @@ module Bayes_utils
 	#Class methods module
 	module ClassMethods
 		
-		def self.weka_attr_accessor(*args)
+		def self.classifier_attr_accessor(*args)
 	    args.each do |arg|
 	      #Here's the getter
 	      self.class_eval("def #{arg};@#{arg};end")
@@ -33,7 +33,7 @@ module Bayes_utils
 	  	end
   	end
 
-		weka_attr_accessor :options,:data,:class_index
+		classifier_attr_accessor :options,:data,:class_index
 
 	end
 end
