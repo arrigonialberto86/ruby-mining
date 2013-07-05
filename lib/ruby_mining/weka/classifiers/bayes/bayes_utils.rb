@@ -1,6 +1,8 @@
+#This module is used by the Bayesian classifiers to inherit the needed methods (instance and class methods)
 module Bayes_utils
 	java_import "weka.core.Utils"
 
+	#Instance methods list
   def self.included(base)
       base.extend(ClassMethods)
   end
@@ -18,6 +20,7 @@ module Bayes_utils
     puts globalInfo
 	end
 
+	#Class methods list
 	module ClassMethods
 
 		def set_options(options_string)

@@ -1,4 +1,6 @@
+$:.unshift(File.expand_path(File.join(File.dirname(__FILE__),"../")))
 require 'java'
+require 'unsupervised_utils'
 
 module Weka
   module Filter
@@ -18,187 +20,39 @@ module Weka
   			java_import "weka.filters.Filter"
 
   			class Add
-  				def list_options
-  					listOptions.each {|key| puts "#{key.synopsis} #{key.description}"}
-  				end
-  				def set_options(options_string)
-  					options = Utils.splitOptions(options_string)
-  					setOptions(options)
-  				end
-  				def set_data(instances)
-  					setInputFormat(instances)
-  					@input = instances
-  				end
-  				def description
-            begin; puts globalInfo; rescue; NoMethodError; puts "Sorry, no description available for this filter"; end
-  				end
-  				def use
-  					Filter.useFilter(@input,self)
-  				end
+          include Unsupervised_Util
   			end
 
   			class Center
-  				def list_options
-  					listOptions.each {|key| puts "#{key.synopsis} #{key.description}"}
-  				end
-  				def set_options(options_string)
-  					options = Utils.splitOptions(options_string)
-  					setOptions(options)
-  				end
-  				def set_data(instances)
-  					setInputFormat(instances)
-  					@input = instances
-  				end
-  				def description
-            begin; puts globalInfo; rescue; NoMethodError; puts "Sorry, no description available for this filter"; end
-  				end
-  				def use
-  					Filter.useFilter(@input,self)
-  				end
+          include Unsupervised_Util
   			end
 
   			class Discretize
-  				def list_options
-  					listOptions.each {|key| puts "#{key.synopsis} #{key.description}"}
-  				end
-  				def set_options(options_string)
-  					options = Utils.splitOptions(options_string)
-  					setOptions(options)
-  				end
-  				def set_data(instances)
-  					setInputFormat(instances)
-  					@input = instances
-  				end
-  				def description
-            begin; puts globalInfo; rescue; NoMethodError; puts "Sorry, no description available for this filter"; end
-  				end
-  				def use
-  					Filter.useFilter(@input,self)
-  				end
+          include Unsupervised_Util
   			end
 
   			class NominalToString
-  				def list_options
-  					listOptions.each {|key| puts "#{key.synopsis} #{key.description}"}
-  				end
-  				def set_options(options_string)
-  					options = Utils.splitOptions(options_string)
-  					setOptions(options)
-  				end
-  				def set_data(instances)
-  					setInputFormat(instances)
-  					@input = instances
-  				end
-  				def description
-            begin; puts globalInfo; rescue; NoMethodError; puts "Sorry, no description available for this filter"; end
-  				end
-  				def use
-  					Filter.useFilter(@input,self)
-  				end
+          include Unsupervised_Util
   			end
 
   			class Normalize
-  				def list_options
-  					listOptions.each {|key| puts "#{key.synopsis} #{key.description}"}
-  				end
-  				def set_options(options_string)
-  					options = Utils.splitOptions(options_string)
-  					setOptions(options)
-  				end
-  				def set_data(instances)
-  					setInputFormat(instances)
-  					@input = instances
-  				end
-  				def description
-            begin; puts globalInfo; rescue; NoMethodError; puts "Sorry, no description available for this filter"; end
-  				end
-  				def use
-  					Filter.useFilter(@input,self)
-  				end
+          include Unsupervised_Util
   			end
 
   			class PrincipalComponents
-  				def list_options
-  					listOptions.each {|key| puts "#{key.synopsis} #{key.description}"}
-  				end
-  				def set_options(options_string)
-  					options = Utils.splitOptions(options_string)
-  					setOptions(options)
-  				end
-  				def set_data(instances)
-  					setInputFormat(instances)
-  					@input = instances
-  				end
-  				def description
-            begin; puts globalInfo; rescue; NoMethodError; puts "Sorry, no description available for this filter"; end
-  				end
-  				def use
-  					Filter.useFilter(@input,self)
-  				end
+          include Unsupervised_Util
   			end
 
   			class Remove
-  				def list_options
-  					listOptions.each {|key| puts "#{key.synopsis} #{key.description}"}
-  				end
-  				def set_options(options_string)
-  					options = Utils.splitOptions(options_string)
-  					setOptions(options)
-  				end
-  				def set_data(instances)
-  					setInputFormat(instances)
-  					@input = instances
-  				end
-  				def description
-            begin; puts globalInfo; rescue; NoMethodError; puts "Sorry, no description available for this filter"; end
-  				end
-  				def use
-  					Filter.useFilter(@input,self)
-  				end
+          include Unsupervised_Util
   			end
 
   			class Standardize
-  				def list_options
-  					listOptions.each {|key| puts "#{key.synopsis} #{key.description}"}
-  				end
-  				def set_options(options_string)
-  					options = Utils.splitOptions(options_string)
-  					setOptions(options)
-  				end
-  				def set_data(instances)
-  					setInputFormat(instances)
-  					@input = instances
-  				end
-  				def description
-            begin; puts globalInfo; rescue; NoMethodError; puts "Sorry, no description available for this filter"; end
-  				end
-  				def use
-  					Filter.useFilter(@input,self)
-  				end
+          include Unsupervised_Util
   			end
 
         class StringToWordVector
-          def list_options
-            listOptions.each {|key| puts "#{key.synopsis} #{key.description}"}
-          end
-          def set_options(options_string)
-            options = Utils.splitOptions(options_string)
-            setOptions(options)
-          end
-          def set_data(instances)
-            setInputFormat(instances)
-            @input = instances
-          end
-          def description
-            begin; puts globalInfo; rescue; NoMethodError; puts "Sorry, no description available for this filter"; end
-          end
-          def use(arg=nil)
-            if arg==nil
-              Filter.useFilter(@input,self)
-            else
-              Filter.useFilter(arg,self) 
-            end
-          end
+          include Unsupervised_Util
         end
 
         Weka::Filter::Unsupervised::Attribute::PrincipalComponents.__persistent__ = true

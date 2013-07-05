@@ -1,4 +1,6 @@
+$:.unshift(File.expand_path(File.join(File.dirname(__FILE__),"../")))
 require 'java'
+require 'unsupervised_utils'
 
 module Weka
   module Filter
@@ -14,122 +16,29 @@ module Weka
         java_import "weka.filters.unsupervised.instance.RemoveWithValues"
 
   			class Normalize
-  				def list_options
-  					listOptions.each {|key| puts "#{key.synopsis} #{key.description}"}
-  				end
-  				def set_options(options_string)
-  					options = Utils.splitOptions(options_string)
-  					setOptions(options)
-  				end
-  				def set_data(instances)
-  					setInputFormat(instances)
-  					@input = instances
-  				end
-  				def description
-            begin; puts globalInfo; rescue; NoMethodError; puts "Sorry, no description available for this filter"; end
-  				end
-  				def use
-  					Filter.useFilter(@input,self)
-  				end
+          include Unsupervised_Util
   			end
 
   			class NonSparseToSparse
-  				def list_options
-  					listOptions.each {|key| puts "#{key.synopsis} #{key.description}"}
-  				end
-  				def set_options(options_string)
-  					options = Utils.splitOptions(options_string)
-  					setOptions(options)
-  				end
-  				def set_data(instances)
-  					setInputFormat(instances)
-  					@input = instances
-  				end
-  				def description
-            begin; puts globalInfo; rescue; NoMethodError; puts "Sorry, no description available for this filter"; end
-  				end
-  				def use
-  					Filter.useFilter(@input,self)
-  				end
+          include Unsupervised_Util
   			end
 
   			class RemoveRange
-  				def list_options
-  					listOptions.each {|key| puts "#{key.synopsis} #{key.description}"}
-  				end
-  				def set_options(options_string)
-  					options = Utils.splitOptions(options_string)
-  					setOptions(options)
-  				end
-  				def set_data(instances)
-  					setInputFormat(instances)
-  					@input = instances
-  				end
-  				def description
-            begin; puts globalInfo; rescue; NoMethodError; puts "Sorry, no description available for this filter"; end
-  				end
-  				def use
-  					Filter.useFilter(@input,self)
-  				end
+          include Unsupervised_Util
   			end
 
         class RemoveWithValues
-          def list_options
-            listOptions.each {|key| puts "#{key.synopsis} #{key.description}"}
-          end
-          def set_options(options_string)
-            options = Utils.splitOptions(options_string)
-            setOptions(options)
-          end
-          def set_data(instances)
-            setInputFormat(instances)
-            @input = instances
-          end
-          def description
-            begin; puts globalInfo; rescue; NoMethodError; puts "Sorry, no description available for this filter"; end
-          end
-          def use
-            Filter.useFilter(@input,self)
-          end
+          include Unsupervised_Util
         end
 
   			class SparseToNonSparse
-  				def list_options
-  					listOptions.each {|key| puts "#{key.synopsis} #{key.description}"}
-  				end
-  				def set_options(options_string)
-  					options = Utils.splitOptions(options_string)
-  					setOptions(options)
-  				end
-  				def set_data(instances)
-  					setInputFormat(instances)
-  					@input = instances
-  				end
-  				def description
-            begin; puts globalInfo; rescue; NoMethodError; puts "Sorry, no description available for this filter"; end
-  				end
-  				def use
-  					Filter.useFilter(@input,self)
-  				end
+          include Unsupervised_Util
   			end
 
   			class SubsetByExpression
-  				def list_options
-  					listOptions.each {|key| puts "#{key.synopsis} #{key.description}"}
-  				end
-  				def set_options(options_string)
-  					options = Utils.splitOptions(options_string)
-  					setOptions(options)
-  				end
-  				def set_data(instances)
-  					setInputFormat(instances)
-  					@input = instances
-  				end
+          include Unsupervised_Util
   				def description
             begin; puts globalInfo.split("\n").each {|line| puts line}; rescue; NoMethodError; puts "Sorry, no description available for this filter"; end
-  				end
-  				def use
-  					Filter.useFilter(@input,self)
   				end
   			end
 
