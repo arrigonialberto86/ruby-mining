@@ -8,7 +8,6 @@ module Weka
   		module Instance
 
   		# Still no filters in this module. Open an issue to suggest what to add!
-
   			
   		end
   	end

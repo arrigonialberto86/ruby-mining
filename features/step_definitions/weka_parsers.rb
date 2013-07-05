@@ -30,7 +30,7 @@ Then(/^I want to extract data from that table$/) do
 end
 
 Then(/^I want to print to stdout the summary for the parsed Instances object$/) do
-	@dataset.summary
+  @dataset.summary
 end
 
 Then(/^I want to convert the data into a bidimensional Ruby Array$/) do 

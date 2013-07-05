@@ -12,11 +12,11 @@ Then(/^I want to parse the file in order to create an Instances class object$/) 
 end
 
 Then(/^I want to print the available filter options and usage$/) do
-	@filter.list_options
+	@filter.filter_options
 end
 
 Then(/^I want to set the option String "(.*?)"$/) do |arg1|
-	@filter.set_options(arg1)
+	@filter.set_filter_options(arg1)
 	@filter.set_data(@dataset_ARFF)
 end
 
