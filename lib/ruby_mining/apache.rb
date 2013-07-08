@@ -1,0 +1,1 @@
+require 'ruby_mining/apache/stat/inference.rb'
