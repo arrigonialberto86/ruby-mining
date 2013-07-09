@@ -10,7 +10,12 @@ module Apache
   		java_import 'org.apache.commons.math3.stat.inference.TTest'
   		java_import 'org.apache.commons.math3.stat.inference.WilcoxonSignedRankTest'
   		java_import 'org.apache.commons.math3.stat.StatUtils'
+      java_import 'java.util.ArrayList'
   		
+      # An implementation of the Wilcoxon signed-rank test
+      # * *Args*    :
+      #   - +Array1+ -> must be a RubyArray.
+      #   - +Array2+ -> must be a RubyArray.
   		def self.wilcoxon_test(array_1,array_2)
   			obj = WilcoxonSignedRankTest.new
         first = Core::Utils::double_to_a(array_1)
@@ -20,7 +25,7 @@ module Apache
   			return val,p_val
   		end
 
-      #Utility class called by 'chi_square' method in this same package
+      # Utility class called by 'chi_square' method in this same package
       class Chi_square
         def self.chi_square_2d(array_2d)
           obj = ChiSquareTest.new
@@ -117,6 +122,23 @@ module Apache
         else
           T_test.t(sample_1,sample_2)
         end 
+      end
+
+      # Implements one-way ANOVA (analysis of variance) statistics.
+      # Tests for differences between two or more categories of univariate data (for example,
+      # the body mass index of accountants, lawyers, doctors and computer programmers). When 
+      # two categories are given, this is equivalent to the TTest.
+      # * *Args*    :
+      #   - +bidimensional_array+ -> a 2d RubyArray
+      def self.one_way_anova(bidimensional_array)
+        collection = ArrayList.new 
+        bidimensional_array.each do |array|
+          collection.add(array.to_java :double)
+        end
+        obj = OneWayAnova.new
+        f_value = obj.anovaFValue(collection)
+        p_value = obj.anovaPValue(collection)
+        return f_value,p_value
       end
 
   	end
