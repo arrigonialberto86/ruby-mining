@@ -11,5 +11,6 @@ Feature: Using a Weka classifier
 		Given the unsupervised Weka classifier "NaiveBayes"
 		Then I want to set option "-K" for it
 		And I want to set the dataset parsed from "weather.numeric.arff"
-		And I want to set the class index for attribute with index "1"
+		And I want to print a summary for the dataset
+		And I want to set the class index for attribute with index "0"
 		And I want to instantiate the classifier for my use

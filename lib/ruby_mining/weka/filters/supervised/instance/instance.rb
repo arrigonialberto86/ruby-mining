@@ -6,9 +6,11 @@ module Weka
   module Filter
   	module Supervised
   		module Instance
+  			java_import "weka.filters.supervised.instance.Resample"
 
-  		# Still no filters in this module. Open an issue to suggest what to add!
-  			
+        class Resample
+          include Supervised_Util
+        end
   		end
   	end
   end

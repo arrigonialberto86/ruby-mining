@@ -140,7 +140,6 @@ module Apache
         p_value = obj.anovaPValue(collection)
         return f_value,p_value
       end
-
   	end
   end
 end
