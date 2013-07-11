@@ -7,7 +7,7 @@ Data mining and machine learning algorithms for Ruby
 Install 'bundle' for JRuby before trying to install the 'ruby-mining' gem.
 Maven is also required for .jars automatic download and installation. On
 Ubuntu/Debian Maven should already be installed and on OSX system you can get
- it from Brew.
+it from Brew
 
 If you want to use 'ruby-mining' APIs without installing the gem you need
 to run command 'rake -T' once before requiring the gem in your script
