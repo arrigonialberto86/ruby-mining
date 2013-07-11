@@ -1,5 +1,6 @@
 require 'java'
 require 'ruport'
+require 'json'
 
 module Core
   module Type
@@ -302,6 +303,16 @@ module Core
           @@positions.each {|value| attributes_vector.addElement(value)}
           super('Instances',attributes_vector,0)
         end
+      end
+
+      # Return a json String for the current Instances object
+      # The output is modeled on the 'datatable' Google charts APIs 
+      # More details at: 'https://developers.google.com/chart/interactive/docs/reference#DataTable'
+      def to_json
+        dataset_hash = Hash.new
+        dataset_hash[:cols] = enumerateAttributes.collect {|attribute| attribute.name}
+        dataset_hash[:rows] = enumerateInstances.collect {|instance| instance.toString} 
+        return JSON.pretty_generate(dataset_hash)
       end
     end #Instances class
 

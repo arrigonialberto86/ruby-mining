@@ -15,4 +15,5 @@ group :development do
   gem "ruport"
   gem "cucumber"
   gem "rspec"
+  gem "json"
 end
