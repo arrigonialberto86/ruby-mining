@@ -6,6 +6,9 @@ Feature: Weka dataset clustering
 		Given the ARFF file "weather.numeric.arff"
     Given the SimpleKMeans algorithm implementation from Weka  
 		Then I want to parse the data from the file
-    
+    And I want to list the options available for SimpleKMeans
+    And I want to set K = "3" as K-means option
+    And I want to perform clustering on the parsed dataset
+    And I want to report result statistics 
 
 
