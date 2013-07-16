@@ -69,6 +69,7 @@ DEPENDENCIES
   cucumber
   jbundler
   jeweler (~> 1.8.4)
+  json
   rdoc (~> 3.12)
   rspec
   ruport
