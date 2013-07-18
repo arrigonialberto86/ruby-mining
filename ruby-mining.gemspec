@@ -3,6 +3,8 @@
 # Instead, edit Jeweler::Tasks in Rakefile, and run 'rake gemspec'
 # -*- encoding: utf-8 -*-
 
+#require 'jbundler'
+
 Gem::Specification.new do |s|
   s.name = "ruby-mining"
   s.version = "0.1.0"
